@@ -1,0 +1,13 @@
+E:\Programming\Visual Studio Project\FirstSetup\FirstSetup\bin\Debug\netcoreapp3.1\GraphConsole.exe
+E:\Programming\Visual Studio Project\FirstSetup\FirstSetup\bin\Debug\netcoreapp3.1\GraphConsole.deps.json
+E:\Programming\Visual Studio Project\FirstSetup\FirstSetup\bin\Debug\netcoreapp3.1\GraphConsole.runtimeconfig.json
+E:\Programming\Visual Studio Project\FirstSetup\FirstSetup\bin\Debug\netcoreapp3.1\GraphConsole.runtimeconfig.dev.json
+E:\Programming\Visual Studio Project\FirstSetup\FirstSetup\bin\Debug\netcoreapp3.1\GraphConsole.dll
+E:\Programming\Visual Studio Project\FirstSetup\FirstSetup\bin\Debug\netcoreapp3.1\GraphConsole.pdb
+E:\Programming\Visual Studio Project\FirstSetup\FirstSetup\obj\Debug\netcoreapp3.1\GraphConsole.csprojAssemblyReference.cache
+E:\Programming\Visual Studio Project\FirstSetup\FirstSetup\obj\Debug\netcoreapp3.1\GraphConsole.AssemblyInfoInputs.cache
+E:\Programming\Visual Studio Project\FirstSetup\FirstSetup\obj\Debug\netcoreapp3.1\GraphConsole.AssemblyInfo.cs
+E:\Programming\Visual Studio Project\FirstSetup\FirstSetup\obj\Debug\netcoreapp3.1\GraphConsole.csproj.CoreCompileInputs.cache
+E:\Programming\Visual Studio Project\FirstSetup\FirstSetup\obj\Debug\netcoreapp3.1\GraphConsole.dll
+E:\Programming\Visual Studio Project\FirstSetup\FirstSetup\obj\Debug\netcoreapp3.1\GraphConsole.pdb
+E:\Programming\Visual Studio Project\FirstSetup\FirstSetup\obj\Debug\netcoreapp3.1\GraphConsole.genruntimeconfig.cache
