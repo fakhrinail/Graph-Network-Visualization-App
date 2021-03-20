@@ -22,16 +22,40 @@ namespace GraphConsole
                 string rawKey = rawEdges[i].Split(" ")[0];
                 string rawValue = rawEdges[i].Split(" ")[1];
 
-                if (graphDict.ContainsKey(rawKey))
+                //cek apakah node rawKey sudah ada atau belum
+                if (graphDict.ContainsKey(rawKey))              //node rawKey ada
                 {
-                    graphDict[rawKey].Add(rawValue);
+                    //cek apakah node rawKey punya edge ke rawValue atau tidak
+                    if (!graphDict[rawKey].Contains(rawValue))
+                    {
+                        graphDict[rawKey].Add(rawValue);
+                    }
                 }
-                else
+                else                                            //node rawKey blm ada
                 {
+                    //inisialisasi node rawKey dengan edge pertama ke rawValue
                     List<string> temp = new List<string>();
                     temp.Add(rawValue);
                     graphDict.Add(rawKey, temp);
-                    this.countVertices++;
+                    countVertices++;
+                }
+
+                //cek apakah node rawValue sudah ada atau belum
+                if (graphDict.ContainsKey(rawValue))
+                {
+                    //cek apakah node rawValue punya edge ke rawKey atau tidak
+                    if (!graphDict[rawValue].Contains(rawKey))
+                    {
+                        graphDict[rawValue].Add(rawKey);
+                    }
+                }
+                else
+                {
+                    //inisialisasi node rawEdge dengan edge pertama ke rawKey
+                    List<string> temp = new List<string>();
+                    temp.Add(rawKey);
+                    graphDict.Add(rawValue, temp);
+                    countVertices++;
                 }
             }
         }

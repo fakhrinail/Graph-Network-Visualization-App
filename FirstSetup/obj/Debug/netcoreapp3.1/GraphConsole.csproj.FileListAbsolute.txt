@@ -11,3 +11,16 @@ E:\Programming\Visual Studio Project\FirstSetup\FirstSetup\obj\Debug\netcoreapp3
 E:\Programming\Visual Studio Project\FirstSetup\FirstSetup\obj\Debug\netcoreapp3.1\GraphConsole.dll
 E:\Programming\Visual Studio Project\FirstSetup\FirstSetup\obj\Debug\netcoreapp3.1\GraphConsole.pdb
 E:\Programming\Visual Studio Project\FirstSetup\FirstSetup\obj\Debug\netcoreapp3.1\GraphConsole.genruntimeconfig.cache
+C:\Users\Tito Prakasa\Documents\Programming\Tubes Stima 2\TubesStima2\FirstSetup\bin\Debug\netcoreapp3.1\GraphConsole.exe
+C:\Users\Tito Prakasa\Documents\Programming\Tubes Stima 2\TubesStima2\FirstSetup\bin\Debug\netcoreapp3.1\GraphConsole.deps.json
+C:\Users\Tito Prakasa\Documents\Programming\Tubes Stima 2\TubesStima2\FirstSetup\bin\Debug\netcoreapp3.1\GraphConsole.runtimeconfig.json
+C:\Users\Tito Prakasa\Documents\Programming\Tubes Stima 2\TubesStima2\FirstSetup\bin\Debug\netcoreapp3.1\GraphConsole.runtimeconfig.dev.json
+C:\Users\Tito Prakasa\Documents\Programming\Tubes Stima 2\TubesStima2\FirstSetup\bin\Debug\netcoreapp3.1\GraphConsole.dll
+C:\Users\Tito Prakasa\Documents\Programming\Tubes Stima 2\TubesStima2\FirstSetup\bin\Debug\netcoreapp3.1\GraphConsole.pdb
+C:\Users\Tito Prakasa\Documents\Programming\Tubes Stima 2\TubesStima2\FirstSetup\obj\Debug\netcoreapp3.1\GraphConsole.csprojAssemblyReference.cache
+C:\Users\Tito Prakasa\Documents\Programming\Tubes Stima 2\TubesStima2\FirstSetup\obj\Debug\netcoreapp3.1\GraphConsole.AssemblyInfoInputs.cache
+C:\Users\Tito Prakasa\Documents\Programming\Tubes Stima 2\TubesStima2\FirstSetup\obj\Debug\netcoreapp3.1\GraphConsole.AssemblyInfo.cs
+C:\Users\Tito Prakasa\Documents\Programming\Tubes Stima 2\TubesStima2\FirstSetup\obj\Debug\netcoreapp3.1\GraphConsole.csproj.CoreCompileInputs.cache
+C:\Users\Tito Prakasa\Documents\Programming\Tubes Stima 2\TubesStima2\FirstSetup\obj\Debug\netcoreapp3.1\GraphConsole.dll
+C:\Users\Tito Prakasa\Documents\Programming\Tubes Stima 2\TubesStima2\FirstSetup\obj\Debug\netcoreapp3.1\GraphConsole.pdb
+C:\Users\Tito Prakasa\Documents\Programming\Tubes Stima 2\TubesStima2\FirstSetup\obj\Debug\netcoreapp3.1\GraphConsole.genruntimeconfig.cache
