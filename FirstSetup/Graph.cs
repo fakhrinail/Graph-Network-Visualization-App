@@ -186,11 +186,5 @@ namespace GraphConsole
 
             return friendRecommendations;
         }
-            public List<string> friendRecommendationDFS()
-        {
-            List<string> retVal = new List<string>();
-            return retVal;
-        }
-
     }
 }
