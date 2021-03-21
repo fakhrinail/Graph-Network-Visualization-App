@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Tito Prakasa\\Documents\\Programming\\Tubes Stima 2\\TubesStima2\\FirstSetup\\GraphConsole.csproj": {}
+    "D:\\ITB\\Semester 4\\Stima\\Tubes2\\TubesStima2\\FirstSetup\\GraphConsole.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Tito Prakasa\\Documents\\Programming\\Tubes Stima 2\\TubesStima2\\FirstSetup\\GraphConsole.csproj": {
+    "D:\\ITB\\Semester 4\\Stima\\Tubes2\\TubesStima2\\FirstSetup\\GraphConsole.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Tito Prakasa\\Documents\\Programming\\Tubes Stima 2\\TubesStima2\\FirstSetup\\GraphConsole.csproj",
+        "projectUniqueName": "D:\\ITB\\Semester 4\\Stima\\Tubes2\\TubesStima2\\FirstSetup\\GraphConsole.csproj",
         "projectName": "GraphConsole",
-        "projectPath": "C:\\Users\\Tito Prakasa\\Documents\\Programming\\Tubes Stima 2\\TubesStima2\\FirstSetup\\GraphConsole.csproj",
-        "packagesPath": "C:\\Users\\Tito Prakasa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Tito Prakasa\\Documents\\Programming\\Tubes Stima 2\\TubesStima2\\FirstSetup\\obj\\",
+        "projectPath": "D:\\ITB\\Semester 4\\Stima\\Tubes2\\TubesStima2\\FirstSetup\\GraphConsole.csproj",
+        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
+        "outputPath": "D:\\ITB\\Semester 4\\Stima\\Tubes2\\TubesStima2\\FirstSetup\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Tito Prakasa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -54,7 +58,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }
