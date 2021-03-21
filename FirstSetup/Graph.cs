@@ -2,6 +2,23 @@
 using System.Collections.Generic;
 using System.Text;
 
+
+class CSCompare : IComparer<string>
+{
+    public int Compare(string x, string y)
+    {
+        if (x == null || y == null)
+        {
+            return 0;
+        }
+
+        // "CompareTo()" method 
+        return x.CompareTo(y);
+
+    }
+}
+
+
 namespace GraphConsole
 {
     class Graph
@@ -57,6 +74,11 @@ namespace GraphConsole
                     graphDict.Add(rawValue, temp);
                     countVertices++;
                 }
+            }
+            foreach(List<string> value in graphDict.Values)
+            {
+                CSCompare comparer = new CSCompare();
+                value.Sort(comparer);
             }
         }
         
@@ -133,11 +155,80 @@ namespace GraphConsole
             }
             return retVal;
         }
-        public List<string> exploreFriendDFS()
+        public List<string> exploreFriendDFS(string nodeAsal, string nodeTujuan)
         {
+            //gunakan fungsi antara
+            Stack<string> hasil = new Stack<string>();
+            List<string> dilalui = new List<string>();
+            helperExploreDFS(ref hasil, ref dilalui, nodeAsal, nodeTujuan);
+
+
             List<string> retVal = new List<string>();
+            while (hasil.Count != 0)
+            {
+                retVal.Add(hasil.Pop());
+            }
+            //sehingga hasil retval terbalik
+
             return retVal;
         }
+
+        private void helperExploreDFS( ref Stack<string> hasil, ref List<string> dilalui, string currentNode, string nodeTujuan)
+        {
+            Console.Out.WriteLine(currentNode);
+            //masukkan currentNode ke stack solusi
+            hasil.Push(currentNode);
+
+            //masukkan currentNode ke list node yang telah dilalui
+            if (!dilalui.Contains(currentNode))
+            {
+                dilalui.Add(currentNode);
+            }
+
+            bool ketemu = false;
+            int i = 0;
+            while(i<graphDict[currentNode].Count && !ketemu)
+            {
+                //cek apakah node pernah dilalui
+                if (!dilalui.Contains(graphDict[currentNode][i]))
+                {
+                    //cek apakah edge sama dengan yang dituju
+                    if (graphDict[currentNode][i].Equals(nodeTujuan))
+                    {
+                        hasil.Push(graphDict[currentNode][i]);
+                        ketemu = true;
+                        Console.Out.WriteLine("here!");
+                    }
+                    else
+                    {
+                        //cek node selanjutnya (pasangan edge dari currentNode)
+                        helperExploreDFS(ref hasil, ref dilalui, graphDict[currentNode][i], nodeTujuan);
+                        return;
+                    }
+                }
+                else
+                {
+                    i++;
+                }
+            }
+           
+            //Jika setelah depth search tidak ditemukan, trackback
+            if (ketemu)
+            {
+                return;
+            }
+            else
+            {
+                hasil.Pop();
+                //Jika jalur tidak ditemukan maka stack hasil akan kosong, hentikan pencarian
+                if (hasil.Count != 0)
+                {
+                    helperExploreDFS(ref hasil, ref dilalui, hasil.Pop(), nodeTujuan);
+                }
+            }
+
+        }
+
         public Dictionary<string, int> friendRecommendationBFS()
         {
             Console.WriteLine("Input your node of choice: ");

@@ -7,11 +7,17 @@ namespace GraphConsole
     {
         static void Main(string[] args)
         {
-            string[] temp = { "A B", "A C", "A D", "B C", "B E", "B F" };
-            Graph G = new Graph(6, temp);
+            string[] temp = { "A D", "A C", "A B", "C F", "B E", "D G", "B C", "C G", "B F", "D F", "E H", "F H", "E F", "J I" };
+            Graph G = new Graph(14, temp);
             G.printAll();
             Console.Out.WriteLine();
 
+            List<string> hasilExploreDFS = G.exploreFriendDFS("A", "J");
+            foreach(string val in hasilExploreDFS)
+            {
+                Console.Out.WriteLine(val);
+            }
+            /*
             // Explore Friend BFS
             List<string> path = new List<string>();
             string awal = "A";
@@ -52,7 +58,7 @@ namespace GraphConsole
                 Console.WriteLine("Tidak ada jalur koneksi yang tersedia");
                 Console.WriteLine("Anda harus memulai koneksi baru itu sendiri.");
             }
-            
+            */
         }
     }
 }
