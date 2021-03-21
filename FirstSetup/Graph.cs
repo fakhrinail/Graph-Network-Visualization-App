@@ -73,9 +73,64 @@ namespace GraphConsole
             }
         }
 
-        public List<string> exploreFriendBFS()
+        public List<string> exploreFriendBFS(string A, string B)
         {
+            // inisialisasi awal
+            bool ditemukan = false;
             List<string> retVal = new List<string>();
+            List<string> reverseRetVal = new List<string>();
+            List<string> queue = new List<string>();
+
+            Dictionary<string, bool> dikunjungi = new Dictionary<string, bool>(this.countVertices);
+            Dictionary<string, string> pred = new Dictionary<string, string>(this.countVertices);
+            foreach (string s in graphDict.Keys)
+            {
+                dikunjungi.Add(s, false);
+                pred.Add(s, null);
+            }
+
+            // kondisi awal
+            queue.Add(A);
+            dikunjungi[A] = true;
+            
+            // iterasi mencari simpul tujuan dengan algoritma BFS
+            while (queue.Count > 0 && !ditemukan)
+            {   
+                foreach (string node in graphDict[queue[0]])
+                {
+                    if (!dikunjungi[node])
+                    {
+                        dikunjungi[node] = true;
+                        queue.Add(node);
+                        pred[node] = queue[0];
+                        
+                        if (string.Equals(node, B))
+                        {
+                            ditemukan = true;
+                        }
+                    }
+                }
+                queue.RemoveAt(0);
+            }
+
+            // tracking jalur solusi yang ditemukan
+            if (ditemukan)
+            {
+                // tracking dari simpul tujuan ke simpul awal
+                string v = B;
+                reverseRetVal.Add(v);
+                while(pred[v] != null)
+                {
+                    reverseRetVal.Add(pred[v]);
+                    v = pred[v];
+                }
+
+                // membalikkan urutan untuk return value
+                for (int i = reverseRetVal.Count - 1; i >= 0; i--)
+                {
+                    retVal.Add(reverseRetVal[i]);
+                }
+            }
             return retVal;
         }
         public List<string> exploreFriendDFS()
