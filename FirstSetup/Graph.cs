@@ -138,12 +138,55 @@ namespace GraphConsole
             List<string> retVal = new List<string>();
             return retVal;
         }
-        public List<string> friendRecommendationBFS()
+        public Dictionary<string, int> friendRecommendationBFS()
         {
-            List<string> retVal = new List<string>();
-            return retVal;
+            Console.WriteLine("Input your node of choice: ");
+            string rootNode = Console.ReadLine(); // harusnya input dicek dulu
+            string observedNode;
+            int friendCounter = 0;
+            List<string> visitedNodes = new List<string>();
+            List<string> rootFriendlist = new List<string>(graphDict[rootNode]);
+            List<string> queueOfNodes = new List<string>();
+            Dictionary<string, int> friendRecommendations = new Dictionary<string, int>();
+
+            queueOfNodes.Add(rootNode);
+            visitedNodes.Add(rootNode);
+            Console.WriteLine(rootNode);
+
+            //lakukan BFS
+            while (queueOfNodes.Count != 0)
+            {
+                observedNode = queueOfNodes[0];
+                queueOfNodes.RemoveAt(0); //pop queue
+                if (rootFriendlist.Contains(observedNode))
+                {
+                    friendCounter++;
+                }
+                foreach (string node in graphDict[observedNode])
+                {
+                    if (!queueOfNodes.Contains(node) && !visitedNodes.Contains(node) && friendCounter != rootFriendlist.Count)
+                    { //batas BFS cuma di tingkat ke-2
+                        visitedNodes.ForEach(Console.Write);
+                        queueOfNodes.Add(node);
+                        visitedNodes.Add(node);
+                    }
+                    else if (rootFriendlist.Contains(node) && !rootFriendlist.Contains(observedNode))
+                    {
+                        if (friendRecommendations.ContainsKey(observedNode))
+                        {
+                            friendRecommendations[observedNode]++;
+                        }
+                        else
+                        {
+                            friendRecommendations.Add(observedNode, 1);
+                        }
+                    }
+                }
+            }
+
+            return friendRecommendations;
         }
-        public List<string> friendRecommendationDFS()
+            public List<string> friendRecommendationDFS()
         {
             List<string> retVal = new List<string>();
             return retVal;
