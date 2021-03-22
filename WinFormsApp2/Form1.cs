@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WinFormsApp2
+namespace Enemyster
 {
     public partial class Form1 : Form
     {
@@ -18,6 +18,17 @@ namespace WinFormsApp2
         }
 
         private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
+
+
+        private void button3_Click_1(object sender, EventArgs e)
         {
 
         }
