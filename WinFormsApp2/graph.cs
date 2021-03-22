@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -19,7 +19,7 @@ class CSCompare : IComparer<string>
 }
 
 
-namespace GraphConsole
+namespace WindowsFormsApp2
 {
     class Graph
     {
@@ -75,19 +75,19 @@ namespace GraphConsole
                     countVertices++;
                 }
             }
-            foreach(List<string> value in graphDict.Values)
+            foreach (List<string> value in graphDict.Values)
             {
                 CSCompare comparer = new CSCompare();
                 value.Sort(comparer);
             }
         }
-        
+
         public void printAll()
         {
             foreach (KeyValuePair<string, List<string>> entry in graphDict)
             {
-                Console.Out.Write("Key: "+ entry.Key +" Value: ");
-                foreach(string str in entry.Value)
+                Console.Out.Write("Key: " + entry.Key + " Value: ");
+                foreach (string str in entry.Value)
                 {
                     Console.Out.Write(str + " ");
                 }
@@ -114,10 +114,10 @@ namespace GraphConsole
             // kondisi awal
             queue.Add(A);
             dikunjungi[A] = true;
-            
+
             // iterasi mencari simpul tujuan dengan algoritma BFS
             while (queue.Count > 0 && !ditemukan)
-            {   
+            {
                 foreach (string node in graphDict[queue[0]])
                 {
                     if (!dikunjungi[node])
@@ -125,7 +125,7 @@ namespace GraphConsole
                         dikunjungi[node] = true;
                         queue.Add(node);
                         pred[node] = queue[0];
-                        
+
                         if (string.Equals(node, B))
                         {
                             ditemukan = true;
@@ -141,7 +141,7 @@ namespace GraphConsole
                 // tracking dari simpul tujuan ke simpul awal
                 string v = B;
                 reverseRetVal.Add(v);
-                while(pred[v] != null)
+                while (pred[v] != null)
                 {
                     reverseRetVal.Add(pred[v]);
                     v = pred[v];
@@ -155,6 +155,8 @@ namespace GraphConsole
             }
             return retVal;
         }
+
+        //akan mereturn lintasan nodeAsal menuju nodeTujuan, jika  lintasan tidak ada akan mereturn list kosong
         public List<string> exploreFriendDFS(string nodeAsal, string nodeTujuan)
         {
             //gunakan fungsi antara
@@ -173,7 +175,7 @@ namespace GraphConsole
             return retVal;
         }
 
-        private void helperExploreDFS( ref Stack<string> hasil, ref List<string> dilalui, string currentNode, string nodeTujuan)
+        private void helperExploreDFS(ref Stack<string> hasil, ref List<string> dilalui, string currentNode, string nodeTujuan)
         {
             Console.Out.WriteLine(currentNode);
             //masukkan currentNode ke stack solusi
@@ -187,7 +189,7 @@ namespace GraphConsole
 
             bool ketemu = false;
             int i = 0;
-            while(i<graphDict[currentNode].Count && !ketemu)
+            while (i < graphDict[currentNode].Count && !ketemu)
             {
                 //cek apakah node pernah dilalui
                 if (!dilalui.Contains(graphDict[currentNode][i]))
@@ -203,6 +205,8 @@ namespace GraphConsole
                     {
                         //cek node selanjutnya (pasangan edge dari currentNode)
                         helperExploreDFS(ref hasil, ref dilalui, graphDict[currentNode][i], nodeTujuan);
+
+                        //jika telah selesai explore return
                         return;
                     }
                 }
@@ -211,10 +215,11 @@ namespace GraphConsole
                     i++;
                 }
             }
-           
+
             //Jika setelah depth search tidak ditemukan, trackback
             if (ketemu)
             {
+                //jika ketemu return
                 return;
             }
             else
