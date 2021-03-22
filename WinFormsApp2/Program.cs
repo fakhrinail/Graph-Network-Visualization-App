@@ -15,18 +15,18 @@ namespace WinFormsApp2
         [STAThread]
         static void Main()
         {
-            Application.SetHighDpiMode(HighDpiMode.SystemAware);
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Form1 F1 = new Form1();
             /*
             string[] temp = { "A D", "A C", "A B", "C F", "B E", "D G", "B C", "C G", "B F", "D F", "E H", "F H", "E F", "J I" };
             Graph GTest = new Graph(14, temp);
 
             //create a form 
             System.Windows.Forms.Form form = new System.Windows.Forms.Form();
+            */
+
             //create a viewer object 
             Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
+            
             //create a graph object 
             Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
             //create the graph content 
@@ -41,12 +41,19 @@ namespace WinFormsApp2
             //bind the graph to the viewer 
             viewer.Graph = graph;
             //associate the viewer with the form 
-            form.SuspendLayout();
+            F1.SuspendLayout();
             viewer.Dock = System.Windows.Forms.DockStyle.Fill;
-            form.Controls.Add(viewer);
-            form.ResumeLayout();
+            F1.Controls.Add(viewer);
+            F1.ResumeLayout();
             //show the form 
-            form.ShowDialog();
+            F1.ShowDialog();
+
+            /*
+            Application.SetHighDpiMode(HighDpiMode.SystemAware);
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(F1);
+            /*
             */
         }
     }
