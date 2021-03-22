@@ -19,7 +19,7 @@ class CSCompare : IComparer<string>
 }
 
 
-namespace WindowsFormsApp2
+namespace WinFormsApp2
 {
     class Graph
     {
