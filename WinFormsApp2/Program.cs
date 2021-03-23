@@ -23,7 +23,7 @@ namespace Enemyster
             //create a form 
             System.Windows.Forms.Form form = new System.Windows.Forms.Form();
             */
-
+            
             //create a viewer object 
             Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
             
@@ -43,7 +43,7 @@ namespace Enemyster
             //associate the viewer with the form 
             F1.SuspendLayout();
             viewer.Dock = System.Windows.Forms.DockStyle.Fill;
-            F1.Controls.Add(viewer);
+            //F1.Controls.Add(viewer);
             F1.ResumeLayout();
             //show the form 
             F1.ShowDialog();
@@ -53,7 +53,6 @@ namespace Enemyster
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(F1);
-            /*
             */
         }
     }
