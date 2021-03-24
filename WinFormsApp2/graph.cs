@@ -23,7 +23,7 @@ namespace Enemyster
 {
     class Graph
     {
-        private Dictionary<string, List<string>> graphDict;  //menyimpan dictionary edges dengan key adalah node dan valuenya adalah nama node yang ia terhubung
+        public Dictionary<string, List<string>> graphDict;  //menyimpan dictionary edges dengan key adalah node dan valuenya adalah nama node yang ia terhubung
         private int countEdges;                 //menyimpan ada berapa edge
         private int countVertices;              //menyimpan ada berapa vertice
 
@@ -80,6 +80,11 @@ namespace Enemyster
                 CSCompare comparer = new CSCompare();
                 value.Sort(comparer);
             }
+        }
+
+        public int getVertices()
+        {
+            return countVertices;
         }
 
         public void printAll()
@@ -235,14 +240,14 @@ namespace Enemyster
 
         }
 
-        public Dictionary<string, int> friendRecommendationBFS(string rootNode)
+        public Dictionary<string, List<string>> friendRecommendationBFS(string rootNode)
         {
             string observedNode;
             int friendCounter = 0;
             List<string> visitedNodes = new List<string>();
             List<string> rootFriendlist = new List<string>(graphDict[rootNode]);
             List<string> queueOfNodes = new List<string>();
-            Dictionary<string, int> friendRecommendations = new Dictionary<string, int>();
+            Dictionary<string, List<string>> friendRecommendations = new Dictionary<string, List<string>>();
 
             queueOfNodes.Add(rootNode);
             visitedNodes.Add(rootNode);
@@ -268,11 +273,13 @@ namespace Enemyster
                     {
                         if (friendRecommendations.ContainsKey(observedNode))
                         {
-                            friendRecommendations[observedNode]++;
+                            friendRecommendations[observedNode].Add(node);
                         }
                         else
                         {
-                            friendRecommendations.Add(observedNode, 1);
+                            List<string> newTemp = new List<string>();
+                            newTemp.Add(node);
+                            friendRecommendations[observedNode] = newTemp;
                         }
                     }
                 }

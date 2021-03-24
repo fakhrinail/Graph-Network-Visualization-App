@@ -116,16 +116,6 @@ namespace Enemyster
             this.comboBox1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.comboBox1.ForeColor = System.Drawing.Color.White;
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "A",
-            "B",
-            "C",
-            "D",
-            "F",
-            "G",
-            "H",
-            "I",
-            "J"});
             this.comboBox1.Location = new System.Drawing.Point(173, 288);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 23);
@@ -140,16 +130,6 @@ namespace Enemyster
             this.comboBox2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.comboBox2.ForeColor = System.Drawing.Color.White;
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "A",
-            "B",
-            "C",
-            "D",
-            "F",
-            "G",
-            "H",
-            "I",
-            "J"});
             this.comboBox2.Location = new System.Drawing.Point(173, 323);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(121, 23);

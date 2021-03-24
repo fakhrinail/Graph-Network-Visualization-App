@@ -70,7 +70,15 @@ namespace Enemyster
             {
                 /* Proses exploreFriend */
 
+                if (comboBox1.Text != "<node_src>" && comboBox2.Text != "<node_dest>")
+                {
+                    /* Proses exploreFriend */
 
+                }
+                else
+                {
+                    
+                }
 
                 /* Proses friendRecommendation */
 
@@ -78,18 +86,22 @@ namespace Enemyster
                 if (comboBox1.Text != "<node_src>")     //text default
                 {
                     //masukkan hasil friendRecommendation ke dalam textBox2
-                    Dictionary<string, int> hasilFriendRecommendation = graphApp.friendRecommendationBFS(comboBox1.Text);
+                    Dictionary<string, List<string>> hasilFriendRecommendation = graphApp.friendRecommendationBFS(comboBox1.Text);
                     string[] tempVal = new string[hasilFriendRecommendation.Count];
                     for (int i = 0; i < hasilFriendRecommendation.Count; i++)
                     {
-                        tempVal[i] = hasilFriendRecommendation.ElementAt(i).Key + " : " + hasilFriendRecommendation.ElementAt(i).Value;
+                        tempVal[i] = hasilFriendRecommendation.ElementAt(i).Key + ", Mutual Friend : ";
+                        for (int j = 0; j < hasilFriendRecommendation.ElementAt(i).Value.Count; j++)
+                        {
+                            tempVal[i] = tempVal[i] + hasilFriendRecommendation.ElementAt(i).Value[j] + " ";
+                        }
                     }
 
                     textBox2.Lines = tempVal;
                 }
                 else
                 {
-                    return;
+                    
                 }
             }
             else if (radioButton2.Checked)
@@ -101,7 +113,7 @@ namespace Enemyster
                 }
                 else
                 {
-                    return;
+                    
                 }
             }
         }
@@ -142,6 +154,16 @@ namespace Enemyster
 
                 //initialize graphApp
                 graphApp = new Graph(banyakEdge,contentOfFile);
+
+                //initialize comboBox1 dan comboBox2
+                string[] node = new string[graphApp.getVertices()];
+                for (int j = 0; j < graphApp.getVertices(); j++)
+                {
+                    node[j] = graphApp.graphDict.ElementAt(j).Key;
+                }
+
+                comboBox1.Items.AddRange(node);
+                comboBox2.Items.AddRange(node);
 
             }
         }
