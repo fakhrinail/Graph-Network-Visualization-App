@@ -339,7 +339,8 @@ namespace Enemyster
                 resultEdges.Add(exploreFriendResult[i] + " " + exploreFriendResult[i+1]);
             }
 
-            // make a reverse list
+            // make a reverse list to account for either direction
+            // ex: A G || G A
             List<string> resultEdgesReversed = new List<string>();
             foreach (string edge in resultEdges)
             {
@@ -348,7 +349,7 @@ namespace Enemyster
                 resultEdgesReversed.Add(new string(charArray));            
             }
 
-            // add edges to graph
+            // add edges to graph plus coloring
             for (int i = 0; i < rawEdges.Count; i++)
             {
                 string rawNode1 = rawEdges[i].Split(" ")[0];
