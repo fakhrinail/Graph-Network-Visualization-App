@@ -28,13 +28,13 @@ namespace Enemyster
         private int countVertices;              //menyimpan ada berapa vertice
 
         //ctor tp langsung aja masukin ada berapa edge dan apa aja
-        public Graph(int countEdges, string[] rawEdges)
+        public Graph(int countEdges, List<string> rawEdges)
         {
             this.countEdges = countEdges;
             this.countVertices = 0;
 
             graphDict = new Dictionary<string, List<string>>();
-            for (int i = 0; i < rawEdges.Length; i++)
+            for (int i = 0; i < rawEdges.Count; i++)
             {
                 string rawKey = rawEdges[i].Split(" ")[0];
                 string rawValue = rawEdges[i].Split(" ")[1];
@@ -170,7 +170,8 @@ namespace Enemyster
             {
                 retVal.Add(hasil.Pop());
             }
-            //sehingga hasil retval terbalik
+
+            retVal.Reverse();
 
             return retVal;
         }
@@ -234,10 +235,8 @@ namespace Enemyster
 
         }
 
-        public Dictionary<string, int> friendRecommendationBFS()
+        public Dictionary<string, int> friendRecommendationBFS(string rootNode)
         {
-            Console.WriteLine("Input your node of choice: ");
-            string rootNode = Console.ReadLine(); // harusnya input dicek dulu
             string observedNode;
             int friendCounter = 0;
             List<string> visitedNodes = new List<string>();
@@ -247,7 +246,6 @@ namespace Enemyster
 
             queueOfNodes.Add(rootNode);
             visitedNodes.Add(rootNode);
-            Console.WriteLine(rootNode);
 
             //lakukan BFS
             while (queueOfNodes.Count != 0)

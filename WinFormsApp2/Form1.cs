@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Enemyster
 {
@@ -14,6 +15,9 @@ namespace Enemyster
     {
         //atribut yang dibutuhkan
         private OpenFileDialog fileSubmitted;
+        private List<string> contentOfFile;
+        private Graph graphApp;
+
         public Form1()
         {
             InitializeComponent();
@@ -22,20 +26,6 @@ namespace Enemyster
         private void Form1_Load(object sender, EventArgs e)
         {
 
-        }
-
-        private void button1Clicked(object sender, EventArgs e)
-        {
-            fileSubmitted = new OpenFileDialog();
-            fileSubmitted.Title = "Enemyster May You Know!";
-            fileSubmitted.InitialDirectory = @"c:\";
-            fileSubmitted.Filter = "All files (*.*)|*.*|All files (*.*)|*.*";
-            fileSubmitted.FilterIndex = 2;
-            fileSubmitted.RestoreDirectory = true;
-            if (fileSubmitted.ShowDialog() == DialogResult.OK)
-            {
-                label1.Text = fileSubmitted.FileName;
-            }
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -75,12 +65,85 @@ namespace Enemyster
 
         private void button2_Click(object sender, EventArgs e)
         {
+            //Tentukan apakah BFS atau DFS
+            if (radioButton1.Checked)
+            {
+                /* Proses exploreFriend */
 
+
+
+                /* Proses friendRecommendation */
+
+                //cek apakah pengguna sudah memasukkan pilihan node_src
+                if (comboBox1.Text != "<node_src>")     //text default
+                {
+                    //masukkan hasil friendRecommendation ke dalam textBox2
+                    Dictionary<string, int> hasilFriendRecommendation = graphApp.friendRecommendationBFS(comboBox1.Text);
+                    string[] tempVal = new string[hasilFriendRecommendation.Count];
+                    for (int i = 0; i < hasilFriendRecommendation.Count; i++)
+                    {
+                        tempVal[i] = hasilFriendRecommendation.ElementAt(i).Key + " : " + hasilFriendRecommendation.ElementAt(i).Value;
+                    }
+
+                    textBox2.Lines = tempVal;
+                }
+                else
+                {
+                    return;
+                }
+            }
+            else if (radioButton2.Checked)
+            {
+                if (comboBox1.Text != "<node_src>" && comboBox2.Text != "<node_dest")
+                {
+                    /* Proses exploreFriend */
+
+                }
+                else
+                {
+                    return;
+                }
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //mensubmit file
+            fileSubmitted = new OpenFileDialog();
+            fileSubmitted.Title = "Enemyster May You Know!";
+            string currentPath = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\");
+            fileSubmitted.InitialDirectory = System.IO.Path.GetFullPath(currentPath);
+            fileSubmitted.Filter = "Text Files|*.txt";
+            fileSubmitted.FilterIndex = 2;
+            fileSubmitted.RestoreDirectory = true;
 
+            if (fileSubmitted.ShowDialog() == DialogResult.OK)
+            {
+                textBox1.Text = fileSubmitted.FileName;
+
+                /* Mulai Proses File */
+                string lineText;                //variabel penyimpan 1 line string     
+                StreamReader sr = new StreamReader(fileSubmitted.FileName); //reader file
+
+                //inisiasi jumlah edge
+                lineText = sr.ReadLine();
+                int banyakEdge = int.Parse(lineText);
+                contentOfFile = new List<string>();
+
+                //iterasi isi file dan menyimpan ke dalam contentOfFile
+                lineText = sr.ReadLine();
+                int i = 0;
+                while (i<banyakEdge)    //while not EOF
+                {
+                    contentOfFile.Add(lineText);
+                    lineText = sr.ReadLine();
+                    i++;
+                }//contentOfFile terisi
+
+                //initialize graphApp
+                graphApp = new Graph(banyakEdge,contentOfFile);
+
+            }
         }
     }
 }
