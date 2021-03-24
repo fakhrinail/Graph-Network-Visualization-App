@@ -308,28 +308,86 @@ namespace Enemyster
             return graphDFS;
         }
 
-        public Microsoft.Msagl.Drawing.Graph LoadResult(List<string> exploreFriendResult, Microsoft.Msagl.Drawing.Graph graphMSAGL)
+        public Microsoft.Msagl.Drawing.Graph LoadResult(List<string> exploreFriendResult, int countEdges, List<string> rawEdges)
         {
             //Microsoft.Msagl.Drawing.Graph graphDFS = new Microsoft.Msagl.Drawing.Graph();
             //graphDFS = 
 
+            //foreach (string node in exploreFriendResult)
+            //{
+            //    if (node == exploreFriendResult[0])
+            //    {
+            //        graphMSAGL.FindNode(node).Attr.FillColor = Color.LightSeaGreen;
+            //    }
+            //    else if (node == exploreFriendResult[exploreFriendResult.Count - 1])
+            //    {
+            //        graphMSAGL.FindNode(node).Attr.FillColor = Color.SeaGreen;
+            //    }
+            //    else
+            //    {
+            //        graphMSAGL.FindNode(node).Attr.FillColor = Color.MediumSeaGreen;
+            //    }
+            //}
+
+            Microsoft.Msagl.Drawing.Graph graphDFS = new Microsoft.Msagl.Drawing.Graph();
+            this.countEdges = countEdges;
+
+            // extract nodes in BFS/DFS
+            List<string> resultEdges = new List<string>();
+            for (int i = 0; i < exploreFriendResult.Count-1; i++)
+            {
+                resultEdges.Add(exploreFriendResult[i] + " " + exploreFriendResult[i+1]);
+            }
+
+            // make a reverse list
+            List<string> resultEdgesReversed = new List<string>();
+            foreach (string edge in resultEdges)
+            {
+                char[] charArray = edge.ToCharArray();
+                Array.Reverse(charArray);
+                resultEdgesReversed.Add(new string(charArray));            
+            }
+
+            // add edges to graph
+            for (int i = 0; i < rawEdges.Count; i++)
+            {
+                string rawNode1 = rawEdges[i].Split(" ")[0];
+                string rawnode2 = rawEdges[i].Split(" ")[1];
+
+                if (resultEdges.Contains(rawEdges[i]) || resultEdgesReversed.Contains(rawEdges[i])) // kalo edge ada di result
+                {
+                    var Edge = graphDFS.AddEdge(rawNode1, rawnode2);
+                    Edge.Attr.ArrowheadAtTarget = ArrowStyle.None;
+                    Edge.Attr.ArrowheadAtSource = ArrowStyle.None;
+                    Edge.Attr.Color = Color.MediumVioletRed;
+                }
+                else
+                {
+                    var Edge = graphDFS.AddEdge(rawNode1, rawnode2);
+                    Edge.Attr.ArrowheadAtTarget = ArrowStyle.None;
+                    Edge.Attr.ArrowheadAtSource = ArrowStyle.None;
+                }
+                
+            }
+
+            // change nodes color
             foreach (string node in exploreFriendResult)
             {
                 if (node == exploreFriendResult[0])
                 {
-                    graphMSAGL.FindNode(node).Attr.FillColor = Color.LightSeaGreen;
+                    graphDFS.FindNode(node).Attr.FillColor = Color.LightSeaGreen;
                 }
-                else if (node == exploreFriendResult[exploreFriendResult.Count-1])
+                else if (node == exploreFriendResult[exploreFriendResult.Count - 1])
                 {
-                    graphMSAGL.FindNode(node).Attr.FillColor = Color.SeaGreen;
+                    graphDFS.FindNode(node).Attr.FillColor = Color.SeaGreen;
                 }
                 else
                 {
-                    graphMSAGL.FindNode(node).Attr.FillColor = Color.MediumSeaGreen;
+                    graphDFS.FindNode(node).Attr.FillColor = Color.MediumSeaGreen;
                 }
             }
 
-            return graphMSAGL;
+            return graphDFS;
         }
     }
 }

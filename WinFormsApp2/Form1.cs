@@ -76,6 +76,17 @@ namespace Enemyster
                 if (comboBox1.Text != "<node_src>" && comboBox2.Text != "<node_dest>")
                 {
                     /* Proses exploreFriend */
+                    panel1.Controls.Clear();
+                    Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
+                    List<string> exploreFriendBFSResult = graphApp.exploreFriendBFS(comboBox1.Text, comboBox2.Text);
+                    //Microsoft.Msagl.Drawing.Graph graphResult = graphApp.buildMSAGLGraph(banyakEdge, contentOfFile);
+                    viewer.Graph = graphApp.LoadResult(exploreFriendBFSResult, banyakEdge, contentOfFile);
+                    viewer.ToolBarIsVisible = false;
+                    viewer.LayoutAlgorithmSettingsButtonVisible = false;
+                    panel1.SuspendLayout();
+                    viewer.Dock = DockStyle.Fill;
+                    panel1.Controls.Add(viewer);
+                    panel1.ResumeLayout();
 
                 }
                 else
@@ -110,14 +121,14 @@ namespace Enemyster
             }
             else if (radioButton2.Checked)
             {
-                if (comboBox1.Text != "<node_src>" && comboBox2.Text != "<node_dest")
+                if (comboBox1.Text != "<node_src>" && comboBox2.Text != "<node_dest>")
                 {
                     /* Proses exploreFriend */
                     panel1.Controls.Clear();
                     Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
                     List<string> exploreFriendDFSResult = graphApp.exploreFriendDFS(comboBox1.Text, comboBox2.Text);
-                    Microsoft.Msagl.Drawing.Graph graphResult = graphApp.buildMSAGLGraph(banyakEdge, contentOfFile);
-                    viewer.Graph = graphApp.LoadResult(exploreFriendDFSResult, graphResult);
+                    //Microsoft.Msagl.Drawing.Graph graphResult = graphApp.buildMSAGLGraph(banyakEdge, contentOfFile);
+                    viewer.Graph = graphApp.LoadResult(exploreFriendDFSResult, banyakEdge, contentOfFile);
                     viewer.ToolBarIsVisible = false;
                     viewer.LayoutAlgorithmSettingsButtonVisible = false;
                     panel1.SuspendLayout();
@@ -169,6 +180,18 @@ namespace Enemyster
                 //initialize graphApp
                 graphApp = new Graph(banyakEdge,contentOfFile);
 
+                // add default graph
+                panel1.Controls.Clear();
+                Microsoft.Msagl.Drawing.Graph defaultGraph = graphApp.buildMSAGLGraph(banyakEdge, contentOfFile);
+                Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
+                viewer.Graph = defaultGraph;
+                viewer.ToolBarIsVisible = false;
+                viewer.LayoutAlgorithmSettingsButtonVisible = false;
+                panel1.SuspendLayout();
+                viewer.Dock = DockStyle.Fill;
+                panel1.Controls.Add(viewer);
+                panel1.ResumeLayout();
+
                 //initialize comboBox1 dan comboBox2
                 string[] node = new string[graphApp.getVertices()];
                 for (int j = 0; j < graphApp.getVertices(); j++)
@@ -178,7 +201,6 @@ namespace Enemyster
 
                 comboBox1.Items.AddRange(node);
                 comboBox2.Items.AddRange(node);
-
             }
         }
     }
