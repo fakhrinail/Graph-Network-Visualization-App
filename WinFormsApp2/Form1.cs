@@ -27,8 +27,7 @@ namespace Enemyster
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
-            //panel1.Controls.Add(viewer);
+
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -79,10 +78,9 @@ namespace Enemyster
                     panel1.Controls.Clear();
                     Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
                     List<string> exploreFriendBFSResult = graphApp.exploreFriendBFS(comboBox1.Text, comboBox2.Text);
-                    //Microsoft.Msagl.Drawing.Graph graphResult = graphApp.buildMSAGLGraph(banyakEdge, contentOfFile);
                     viewer.Graph = graphApp.LoadResult(exploreFriendBFSResult, banyakEdge, contentOfFile);
                     viewer.ToolBarIsVisible = false;
-                    viewer.LayoutAlgorithmSettingsButtonVisible = false;
+                    //viewer.LayoutAlgorithmSettingsButtonVisible = false;
                     panel1.SuspendLayout();
                     viewer.Dock = DockStyle.Fill;
                     panel1.Controls.Add(viewer);
