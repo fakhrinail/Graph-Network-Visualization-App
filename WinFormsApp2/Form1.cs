@@ -87,6 +87,7 @@ namespace Enemyster
                 {
                     //masukkan hasil friendRecommendation ke dalam textBox2
                     Dictionary<string, List<string>> hasilFriendRecommendation = graphApp.friendRecommendationBFS(comboBox1.Text);
+                    
                     string[] tempVal = new string[hasilFriendRecommendation.Count];
                     for (int i = 0; i < hasilFriendRecommendation.Count; i++)
                     {
@@ -97,7 +98,7 @@ namespace Enemyster
                         }
                     }
 
-                    textBox2.Lines = tempVal;
+                    textBox2.Lines = tempVal;   //perlu diinget textBox2.Lines nerimanya array of string
                 }
                 else
                 {
