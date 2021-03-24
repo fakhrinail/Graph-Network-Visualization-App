@@ -89,7 +89,7 @@ namespace Enemyster
                 }
                 else
                 {
-                    return;
+                    
                 }
             }
             else if (radioButton2.Checked)
@@ -97,11 +97,23 @@ namespace Enemyster
                 if (comboBox1.Text != "<node_src>" && comboBox2.Text != "<node_dest")
                 {
                     /* Proses exploreFriend */
-
+                    List<string> exploreFriendDFSResult = graphApp.exploreFriendDFS(comboBox1.Text, comboBox2.Text);
+                    Microsoft.Msagl.Drawing.Graph graphDFS = graphApp.loadResult(exploreFriendDFSResult);
+                    Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
+                    viewer.Graph = graphDFS;
+                    viewer.ToolBarIsVisible = false;
+                    viewer.LayoutAlgorithmSettingsButtonVisible = false;
+                    //viewer.NavigationVisible = false;
+                    //viewer.visib
+                    viewer.LayoutEditingEnabled = false;
+                    this.SuspendLayout();
+                    viewer.Dock = DockStyle.Fill;
+                    panel1.Controls.Add(viewer);
+                    this.ResumeLayout();
                 }
                 else
                 {
-                    return;
+                    
                 }
             }
         }
@@ -142,7 +154,7 @@ namespace Enemyster
 
                 //initialize graphApp
                 graphApp = new Graph(banyakEdge,contentOfFile);
-
+                graphApp.buildMSAGLGraph(banyakEdge, contentOfFile);
             }
         }
     }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Microsoft.Msagl.Drawing;
 using System.Text;
 
 
@@ -26,10 +27,12 @@ namespace Enemyster
         private Dictionary<string, List<string>> graphDict;  //menyimpan dictionary edges dengan key adalah node dan valuenya adalah nama node yang ia terhubung
         private int countEdges;                 //menyimpan ada berapa edge
         private int countVertices;              //menyimpan ada berapa vertice
+        private Microsoft.Msagl.Drawing.Graph graphMSAGL;
 
         //ctor tp langsung aja masukin ada berapa edge dan apa aja
         public Graph(int countEdges, List<string> rawEdges)
         {
+            this.graphMSAGL = new Microsoft.Msagl.Drawing.Graph("graphMSAGL");
             this.countEdges = countEdges;
             this.countVertices = 0;
 
@@ -279,6 +282,43 @@ namespace Enemyster
             }
 
             return friendRecommendations;
+        }
+
+        public void buildMSAGLGraph(int countEdges, List<string> rawEdges)
+        {
+            this.countEdges = countEdges;
+
+            for (int i = 0; i < rawEdges.Count; i++)
+            {
+                string rawNode1 = rawEdges[i].Split(" ")[0];
+                string rawnode2 = rawEdges[i].Split(" ")[1];
+
+                var Edge = this.graphMSAGL.AddEdge(rawNode1, rawnode2);
+                Edge.Attr.ArrowheadAtTarget = ArrowStyle.None;
+                Edge.Attr.ArrowheadAtSource = ArrowStyle.None;
+            }
+        }
+
+        public Microsoft.Msagl.Drawing.Graph loadResult(List<string> exploreFriendResult)
+        {
+            Microsoft.Msagl.Drawing.Graph graphDFS = graphMSAGL;
+            foreach (string node in exploreFriendResult)
+            {
+                if (node == exploreFriendResult[0])
+                {
+                    graphDFS.FindNode(node).Attr.FillColor = Color.LightSeaGreen;
+                }
+                else if (node == exploreFriendResult[exploreFriendResult.Count-1])
+                {
+                    graphDFS.FindNode(node).Attr.FillColor = Color.SeaGreen;
+                }
+                else
+                {
+                    graphDFS.FindNode(node).Attr.FillColor = Color.MediumSeaGreen;
+                }
+            }
+
+            return graphDFS;
         }
     }
 }
