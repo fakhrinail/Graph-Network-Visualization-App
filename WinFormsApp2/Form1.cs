@@ -12,6 +12,8 @@ namespace Enemyster
 {
     public partial class Form1 : Form
     {
+        //atribut yang dibutuhkan
+        private OpenFileDialog fileSubmitted;
         public Form1()
         {
             InitializeComponent();
@@ -22,15 +24,18 @@ namespace Enemyster
 
         }
 
-        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        private void button1Clicked(object sender, EventArgs e)
         {
-
-        }
-
-
-        private void button3_Click_1(object sender, EventArgs e)
-        {
-
+            fileSubmitted = new OpenFileDialog();
+            fileSubmitted.Title = "Enemyster May You Know!";
+            fileSubmitted.InitialDirectory = @"c:\";
+            fileSubmitted.Filter = "All files (*.*)|*.*|All files (*.*)|*.*";
+            fileSubmitted.FilterIndex = 2;
+            fileSubmitted.RestoreDirectory = true;
+            if (fileSubmitted.ShowDialog() == DialogResult.OK)
+            {
+                label1.Text = fileSubmitted.FileName;
+            }
         }
     }
 }
