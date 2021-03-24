@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using Microsoft.Msagl.Drawing;
 
 namespace Enemyster
 {
@@ -17,6 +18,7 @@ namespace Enemyster
         private OpenFileDialog fileSubmitted;
         private List<string> contentOfFile;
         private Graph graphApp;
+        private int banyakEdge;
 
         public Form1()
         {
@@ -25,7 +27,8 @@ namespace Enemyster
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            //Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
+            //panel1.Controls.Add(viewer);
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -97,19 +100,17 @@ namespace Enemyster
                 if (comboBox1.Text != "<node_src>" && comboBox2.Text != "<node_dest")
                 {
                     /* Proses exploreFriend */
-                    List<string> exploreFriendDFSResult = graphApp.exploreFriendDFS(comboBox1.Text, comboBox2.Text);
-                    Microsoft.Msagl.Drawing.Graph graphDFS = graphApp.loadResult(exploreFriendDFSResult);
+                    panel1.Controls.Clear();
                     Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
-                    viewer.Graph = graphDFS;
+                    List<string> exploreFriendDFSResult = graphApp.exploreFriendDFS(comboBox1.Text, comboBox2.Text);
+                    Microsoft.Msagl.Drawing.Graph graphResult = graphApp.buildMSAGLGraph(banyakEdge, contentOfFile);
+                    viewer.Graph = graphApp.LoadResult(exploreFriendDFSResult, graphResult);
                     viewer.ToolBarIsVisible = false;
                     viewer.LayoutAlgorithmSettingsButtonVisible = false;
-                    //viewer.NavigationVisible = false;
-                    //viewer.visib
-                    viewer.LayoutEditingEnabled = false;
-                    this.SuspendLayout();
+                    panel1.SuspendLayout();
                     viewer.Dock = DockStyle.Fill;
                     panel1.Controls.Add(viewer);
-                    this.ResumeLayout();
+                    panel1.ResumeLayout();
                 }
                 else
                 {
@@ -139,7 +140,7 @@ namespace Enemyster
 
                 //inisiasi jumlah edge
                 lineText = sr.ReadLine();
-                int banyakEdge = int.Parse(lineText);
+                banyakEdge = int.Parse(lineText);
                 contentOfFile = new List<string>();
 
                 //iterasi isi file dan menyimpan ke dalam contentOfFile
@@ -154,7 +155,6 @@ namespace Enemyster
 
                 //initialize graphApp
                 graphApp = new Graph(banyakEdge,contentOfFile);
-                graphApp.buildMSAGLGraph(banyakEdge, contentOfFile);
             }
         }
     }

@@ -27,12 +27,11 @@ namespace Enemyster
         private Dictionary<string, List<string>> graphDict;  //menyimpan dictionary edges dengan key adalah node dan valuenya adalah nama node yang ia terhubung
         private int countEdges;                 //menyimpan ada berapa edge
         private int countVertices;              //menyimpan ada berapa vertice
-        private Microsoft.Msagl.Drawing.Graph graphMSAGL;
+        //private Microsoft.Msagl.Drawing.Graph graphMSAGL;
 
         //ctor tp langsung aja masukin ada berapa edge dan apa aja
         public Graph(int countEdges, List<string> rawEdges)
         {
-            this.graphMSAGL = new Microsoft.Msagl.Drawing.Graph("graphMSAGL");
             this.countEdges = countEdges;
             this.countVertices = 0;
 
@@ -284,8 +283,9 @@ namespace Enemyster
             return friendRecommendations;
         }
 
-        public void buildMSAGLGraph(int countEdges, List<string> rawEdges)
+        public Microsoft.Msagl.Drawing.Graph buildMSAGLGraph(int countEdges, List<string> rawEdges)
         {
+            Microsoft.Msagl.Drawing.Graph graphDFS = new Microsoft.Msagl.Drawing.Graph();
             this.countEdges = countEdges;
 
             for (int i = 0; i < rawEdges.Count; i++)
@@ -293,32 +293,36 @@ namespace Enemyster
                 string rawNode1 = rawEdges[i].Split(" ")[0];
                 string rawnode2 = rawEdges[i].Split(" ")[1];
 
-                var Edge = this.graphMSAGL.AddEdge(rawNode1, rawnode2);
+                var Edge = graphDFS.AddEdge(rawNode1, rawnode2);
                 Edge.Attr.ArrowheadAtTarget = ArrowStyle.None;
                 Edge.Attr.ArrowheadAtSource = ArrowStyle.None;
             }
+
+            return graphDFS;
         }
 
-        public Microsoft.Msagl.Drawing.Graph loadResult(List<string> exploreFriendResult)
+        public Microsoft.Msagl.Drawing.Graph LoadResult(List<string> exploreFriendResult, Microsoft.Msagl.Drawing.Graph graphMSAGL)
         {
-            Microsoft.Msagl.Drawing.Graph graphDFS = graphMSAGL;
+            //Microsoft.Msagl.Drawing.Graph graphDFS = new Microsoft.Msagl.Drawing.Graph();
+            //graphDFS = 
+
             foreach (string node in exploreFriendResult)
             {
                 if (node == exploreFriendResult[0])
                 {
-                    graphDFS.FindNode(node).Attr.FillColor = Color.LightSeaGreen;
+                    graphMSAGL.FindNode(node).Attr.FillColor = Color.LightSeaGreen;
                 }
                 else if (node == exploreFriendResult[exploreFriendResult.Count-1])
                 {
-                    graphDFS.FindNode(node).Attr.FillColor = Color.SeaGreen;
+                    graphMSAGL.FindNode(node).Attr.FillColor = Color.SeaGreen;
                 }
                 else
                 {
-                    graphDFS.FindNode(node).Attr.FillColor = Color.MediumSeaGreen;
+                    graphMSAGL.FindNode(node).Attr.FillColor = Color.MediumSeaGreen;
                 }
             }
 
-            return graphDFS;
+            return graphMSAGL;
         }
     }
 }
