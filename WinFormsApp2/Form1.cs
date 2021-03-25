@@ -97,16 +97,44 @@ namespace Enemyster
                 //cek apakah pengguna sudah memasukkan pilihan node_src
                 if (comboBox1.Text != "<node_src>")     //text default
                 {
-                    //masukkan hasil friendRecommendation ke dalam textBox2
+                    /* Masukkan hasil friendRecommendation ke dalam textBox2 */
                     Dictionary<string, List<string>> hasilFriendRecommendation = graphApp.friendRecommendationBFS(comboBox1.Text);
-                    
-                    string[] tempVal = new string[hasilFriendRecommendation.Count];
+
+                    //urutkan hasil terlebih dahulu
+                    List<KeyValuePair<string, int>> tempList = new List<KeyValuePair<string, int>>();
                     for (int i = 0; i < hasilFriendRecommendation.Count; i++)
                     {
-                        tempVal[i] = hasilFriendRecommendation.ElementAt(i).Key + ", Mutual Friend : ";
-                        for (int j = 0; j < hasilFriendRecommendation.ElementAt(i).Value.Count; j++)
+                        //cari terbesar
+                        int max = 0;
+                        string terbesar="";
+                        for (int j = 0; j < hasilFriendRecommendation.Count; j++)
                         {
-                            tempVal[i] = tempVal[i] + hasilFriendRecommendation.ElementAt(i).Value[j] + " ";
+                            KeyValuePair<string, int> tempPair = new KeyValuePair<string, int>(hasilFriendRecommendation.ElementAt(j).Key, hasilFriendRecommendation.ElementAt(j).Value.Count);
+
+                            if (hasilFriendRecommendation.ElementAt(j).Value.Count > max && !tempList.Contains(tempPair))
+                            {
+                                max = hasilFriendRecommendation.ElementAt(j).Value.Count;
+                                terbesar = hasilFriendRecommendation.ElementAt(j).Key;
+                            }
+                        }
+                        tempList.Add(new KeyValuePair<string, int>(terbesar, max));
+                    }
+
+                    Dictionary<string, List<string>> sortedHasil = new Dictionary<string, List<string>>();
+                    for (int i = 0; i < hasilFriendRecommendation.Count; i++)
+                    {
+                        List<string> newTemp = new List<string>(hasilFriendRecommendation[tempList.ElementAt(i).Key]);
+                        sortedHasil.Add(tempList.ElementAt(i).Key, newTemp);
+                    }
+
+
+                        string[] tempVal = new string[hasilFriendRecommendation.Count];
+                    for (int i = 0; i < hasilFriendRecommendation.Count; i++)
+                    {
+                        tempVal[i] = sortedHasil.ElementAt(i).Key + ", Mutual Friend : ";
+                        for (int j = 0; j < sortedHasil.ElementAt(i).Value.Count; j++)
+                        {
+                            tempVal[i] = tempVal[i] + sortedHasil.ElementAt(i).Value[j] + " ";
                         }
                     }
 
