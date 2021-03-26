@@ -310,25 +310,6 @@ namespace Enemyster
 
         public Microsoft.Msagl.Drawing.Graph LoadResult(List<string> exploreFriendResult, int countEdges, List<string> rawEdges)
         {
-            //Microsoft.Msagl.Drawing.Graph graphDFS = new Microsoft.Msagl.Drawing.Graph();
-            //graphDFS = 
-
-            //foreach (string node in exploreFriendResult)
-            //{
-            //    if (node == exploreFriendResult[0])
-            //    {
-            //        graphMSAGL.FindNode(node).Attr.FillColor = Color.LightSeaGreen;
-            //    }
-            //    else if (node == exploreFriendResult[exploreFriendResult.Count - 1])
-            //    {
-            //        graphMSAGL.FindNode(node).Attr.FillColor = Color.SeaGreen;
-            //    }
-            //    else
-            //    {
-            //        graphMSAGL.FindNode(node).Attr.FillColor = Color.MediumSeaGreen;
-            //    }
-            //}
-
             Microsoft.Msagl.Drawing.Graph graphDFS = new Microsoft.Msagl.Drawing.Graph();
             this.countEdges = countEdges;
 
