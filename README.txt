@@ -1,8 +1,9 @@
 Aplikasi Enemyster menggunakan algoritma BFS dan DFS untuk mengeksplor dan mencari rekomendasi teman.
+
 Algoritma BFS dijalankan dengan menelusuri simpul-simpul tetangga milik simpul pusat terlebih dahulu,
 setelah selesai akan melanjutkan dengan simpul-simpul tetangga dari simpul yang tadi ditelusuri.
 Proses akan diulang hingga batas tercapai atau semua simpul sudah ditelusuri.
-Algoritma DFS ...
+Algoritma DFS dijalankan dengan bantuan list node yang telah dilalui dan stack node yang baru saja dilalui. Selanjutnya dengan pendekatan rekursif algoritma ini akan terus memperdalam pencarian jika solusi belum ditemukan. Jika, sudah mentok (node tidak memiliki edge yang belum dilalui) lakukan backtracking dengan mempop stack tadi. Lanjutkan pencarian dari node yang telah dipop tadi. Ulangi hingga pencarian ditemukan/semua node telah dilalui.
 
 Rekomendasi requirement dari program adalah laptop/PC dengan OS Windows
 
