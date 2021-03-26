@@ -446,3 +446,14 @@ $RECYCLE.BIN/
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+!AutomaticGraphLayout.dll
+!AutomaticGraphLayout.Drawing.dll
+!Enemyster.deps.json
+!Enemyster.dll
+!Enemyster.exe
+!Enemyster.pdb
+!Enemyster.runtimeconfig.dev.json
+!Enemyster.runtimeconfig.json
+!Microsoft.Msagl.GraphViewerGdi.dll
+!Microsoft.Msagl.WpfGraphControl.dll
